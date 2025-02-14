@@ -1,5 +1,5 @@
-package main.java.com.survey;
-
+package com.survey;
+import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 
 class Survey {
@@ -16,10 +16,16 @@ class Survey {
     }
 
     public void addQuestion(String text) {
+        if (StringUtils.isBlank(text)) {
+            System.out.println("Error: Question cannot be blank.");
+            return;
+        }
+
         if (questions.size() >= 40) {
             System.out.println("Cannot add more than 40 questions.");
             return;
         }
+
         for (Question q : questions) {
             if (q.getText().equalsIgnoreCase(text)) {
                 System.out.println("Question already exists.");
@@ -28,6 +34,7 @@ class Survey {
         }
         questions.add(new Question(text));
     }
+
 
     public void removeQuestion(String text) {
         questions.removeIf(q -> q.getText().equalsIgnoreCase(text));
@@ -44,3 +51,4 @@ class Survey {
         return questions;
     }
 }
+

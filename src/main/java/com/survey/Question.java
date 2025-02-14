@@ -1,5 +1,4 @@
-package main.java.com.survey;
-
+package com.survey;
 import java.util.*;
 
 class Question {

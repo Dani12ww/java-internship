@@ -1,6 +1,6 @@
-package main.java.com.survey;
-
+package com.survey;
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 class SurveyManager {
     private List<Survey> surveys;
@@ -47,10 +47,24 @@ class SurveyManager {
     private void createSurvey() {
         System.out.print("Enter survey title: ");
         String title = scanner.nextLine();
+        while (StringUtils.isBlank(title)) {
+            System.out.println("Survey title cannot be blank! Please enter a valid title.");
+            title = scanner.nextLine();
+        }
+
         System.out.print("Enter survey topic: ");
         String topic = scanner.nextLine();
+        while (StringUtils.isBlank(topic)) {
+            System.out.println("Survey topic cannot be blank! Please enter a valid topic.");
+            topic = scanner.nextLine();
+        }
+
         System.out.print("Enter survey description: ");
         String description = scanner.nextLine();
+        while (StringUtils.isBlank(description)) {
+            System.out.println("Survey description cannot be blank! Please enter a valid description.");
+            description = scanner.nextLine();
+        }
 
         Survey survey = new Survey(title, topic, description);
         surveys.add(survey);
@@ -60,11 +74,17 @@ class SurveyManager {
             System.out.print("Enter question (must have at least 10, type 'done' after 10 to stop): ");
             String question = scanner.nextLine();
 
+            if (StringUtils.isBlank(question)) {
+                System.out.println("Question cannot be blank! Please enter a valid question.");
+                continue;
+            }
+
             if (question.equalsIgnoreCase("done")) {
                 if (questionCount >= 10) break;
                 System.out.println("You need at least 10 questions before finishing.");
                 continue;
             }
+
             survey.addQuestion(question);
             questionCount++;
         }

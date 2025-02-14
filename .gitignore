@@ -27,3 +27,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignore Maven's target directory
+target/
+
+# Ignore IntelliJ IDEA settings
+.idea/
